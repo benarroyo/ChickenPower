@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>ChickenPower.Common</RootNamespace>
+    <AssemblyName>ChickenPower.Common</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Serilog">
+      <HintPath>..\..\..\..\Users\benja\.nuget\packages\serilog\2.8.0\lib\netstandard2.0\Serilog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

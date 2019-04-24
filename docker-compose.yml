@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+  chickenpower.backendforfrontend:
+    image: ${DOCKER_REGISTRY-}chickenpowerbackendforfrontend
+    build:
+      context: .
+      dockerfile: ChickenPower.BackendForFrontend/Dockerfile
+
+
+  chickenpower.statesaga:
+    image: ${DOCKER_REGISTRY-}chickenpowerstatesaga
+    build:
+      context: .
+      dockerfile: ChickenPower.StateSaga/Dockerfile
+  
+  
+  chickenpower.contractgeneratorproxy:
+    image: ${DOCKER_REGISTRY-}chickenpowercontractgeneratorproxy
+    build:
+      context: .
+      dockerfile: ChickenPower.ContractGeneratorProxy/Dockerfile
+
+
+  chickenpower.pricingproxy:
+    image: ${DOCKER_REGISTRY-}chickenpowerpricingproxy
+    build:
+      context: .
+      dockerfile: ChickenPower.PricingProxy/Dockerfile
+  
+
+  rabbit-mq:
+    image: "rabbitmq:3.7-management"
+    ports:           
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - .\dev-env\rabbit-config:/etc/rabbitmq
+
+
+  seq:
+    image: "datalust/seq:latest"
+    environment:
+      ACCEPT_EULA: 'Y'
+    ports:
+      - "89:80"
+      - "5341:5341"
+  

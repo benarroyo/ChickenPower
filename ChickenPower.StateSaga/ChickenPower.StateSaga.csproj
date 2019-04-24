@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.3.2" />
+    <PackageReference Include="MassTransit.Quartz" Version="5.3.2" />
+    <PackageReference Include="MassTransit.SerilogIntegration" Version="5.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChickenPower.Common\ChickenPower.Common.csproj" />
+    <ProjectReference Include="..\ChickenPower.Messaging\ChickenPower.Messaging.csproj" />
+    <ProjectReference Include="..\ChickenPower.Persistence\ChickenPower.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
