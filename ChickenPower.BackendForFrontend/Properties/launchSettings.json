@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": false,
-      "launchUrl": "api/orders",
+      "launchUrl": "api/proposal",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "Sulphur.BackendForFrontend": {
       "commandName": "Project",
       "launchBrowser": false,
-      "launchUrl": "api/orders",
+      "launchUrl": "api/proposal",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": false,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/orders"
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/proposal"
     }
   }
 }
