@@ -5,7 +5,7 @@ namespace ChickenPower.Common.Logging
 {
     public static class LoggingConfiguration
     {
-        public static string SeqUrl { get; } = "http://10.0.75.1:5341";
+        public static string SeqUrl { get; } = "http://seq:5341";
 
         public static Logger ConfigureLogger(string serviceName)
         {

@@ -10,16 +10,18 @@
 	"vhosts": [{
 			"name": "/"
 		}, {
-			"name": "SheepPower"
+			"name": "ChickenPower"
 		}
 	],
-	"permissions": [{
+	"permissions": [
+		{
 			"user": "guest",
-			"vhost": "SheepPower",
+			"vhost": "ChickenPower",
 			"configure": ".*",
 			"write": ".*",
 			"read": ".*"
-		}, {
+		},
+		{
 			"user": "guest",
 			"vhost": "/",
 			"configure": ".*",

@@ -109,7 +109,7 @@ namespace ChickenPower.StateSaga.StateSaga
                         context => new GenerateContractCommand(context.Data.ProposalId))
                     .TransitionTo(CalculatingPrice)
                     .Schedule(PriceRequestExpired, context => new PriceRequestExpiredEvent(context.Data.ProposalId)),
-                When(PriceCalulationFinished));
+                Ignore(PriceCalulationFinished));
 
 
             During(CalculatingPrice,
@@ -121,6 +121,7 @@ namespace ChickenPower.StateSaga.StateSaga
                                 context.Data.Price);
                             context.Instance.Price = context.Data.Price;
                         })
+                    .Unschedule(PriceRequestExpired)
                     .TransitionTo(PriceCalculated),
                 When(PriceRequestExpired.Received)
                     .Then(context =>
