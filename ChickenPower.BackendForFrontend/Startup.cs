@@ -62,10 +62,7 @@ namespace ChickenPower.BackendForFrontend
             var builder = new ContainerBuilder();
             builder.Populate(services);
 
-            builder.Register(c => BusConfigurator.ConfigureBus((cfg, host) =>
-                {
-                    cfg.UseSerilog();
-                }))
+            builder.Register(c => BusConfigurator.ConfigureBus())
                 .As<IBus>()
                 .As<IBusControl>()
                 .As<ISendEndpointProvider>()

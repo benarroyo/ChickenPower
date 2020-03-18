@@ -6,7 +6,7 @@ namespace ChickenPower.Messaging.MassTransit
 {
     public static class BusConfigurator
     {
-        public static IBusControl ConfigureBus(Action<IRabbitMqBusFactoryConfigurator, IRabbitMqHost> registrationAction = null)
+        public static IBusControl ConfigureBus(Action<IRabbitMqBusFactoryConfigurator> registrationAction = null)
         {
             return Bus.Factory.CreateUsingRabbitMq(cfg =>
             {
@@ -18,7 +18,7 @@ namespace ChickenPower.Messaging.MassTransit
                         hst.Password(RabbitMqConnectionInformation.Password);
                     });
 
-                registrationAction?.Invoke(cfg, host);
+                registrationAction?.Invoke(cfg);
             });
         }
     }

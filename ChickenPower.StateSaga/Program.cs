@@ -3,9 +3,11 @@ using ChickenPower.Messaging.MassTransit;
 using ChickenPower.Persistence;
 using ChickenPower.StateSaga.StateSaga;
 using MassTransit;
+using MassTransit.Context;
 using MassTransit.Saga;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Serilog.Extensions.Logging;
 
 
 namespace ChickenPower.StateSaga
@@ -14,7 +16,8 @@ namespace ChickenPower.StateSaga
     {
         public static void Main(string[] args)
         {
-            LoggingConfiguration.ConfigureLogger("StateSaga");
+            var logger = LoggingConfiguration.ConfigureLogger("StateSaga");
+            LogContext.ConfigureCurrentLogContext(new SerilogLoggerFactory(logger));
 
             var bus = ConfigureBus();
             bus.Start();
@@ -32,11 +35,9 @@ namespace ChickenPower.StateSaga
 
             var repository = new InMemorySagaRepository<PersistedProposal>();
 
-            return BusConfigurator.ConfigureBus((cfg, host) =>
+            return BusConfigurator.ConfigureBus(cfg =>
             {
-                cfg.UseSerilog();
                 cfg.ReceiveEndpoint(
-                    host,
                     "proposal_saga",
                     e =>
                     {

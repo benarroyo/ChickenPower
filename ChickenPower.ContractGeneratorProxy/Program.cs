@@ -2,8 +2,10 @@
 using ChickenPower.ContractGeneratorProxy.Services;
 using ChickenPower.Messaging.MassTransit;
 using MassTransit;
+using MassTransit.Context;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Serilog.Extensions.Logging;
 
 namespace ChickenPower.ContractGeneratorProxy
 {
@@ -11,7 +13,8 @@ namespace ChickenPower.ContractGeneratorProxy
     {
         public static void Main(string[] args)
         {
-            LoggingConfiguration.ConfigureLogger("PricingProxy");
+            var logger = LoggingConfiguration.ConfigureLogger("PricingProxy");
+            LogContext.ConfigureCurrentLogContext(new SerilogLoggerFactory(logger));
 
             var bus = ConfigureBus();
             bus.Start();
@@ -26,11 +29,9 @@ namespace ChickenPower.ContractGeneratorProxy
 
         private static IBusControl ConfigureBus()
         {
-            return BusConfigurator.ConfigureBus((cfg, host) =>
+            return BusConfigurator.ConfigureBus(cfg =>
             {
-                cfg.UseSerilog();
                 cfg.ReceiveEndpoint(
-                    host,
                     "contract_generator_data",
                     endpointConfigurator =>
                     {
