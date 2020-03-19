@@ -106,7 +106,7 @@ namespace ChickenPower.StateSaga.StateSaga
                                 context.Instance.CorrelationId,
                                 context.Data.ProposalId))
                     .Send((state, command) => new Uri(RabbitMqConnectionInformation.PricingServiceEndpoint),
-                        context => new GenerateContractCommand(context.Data.ProposalId))
+                        context => new CalculatePriceCommand(context.Data.ProposalId))
                     .TransitionTo(CalculatingPrice)
                     .Schedule(PriceRequestExpired, context => new PriceRequestExpiredEvent(context.Data.ProposalId)),
                 Ignore(PriceCalulationFinished));
