@@ -31,7 +31,7 @@ namespace ChickenPower.StateSaga
 
         private static IBusControl ConfigureBus()
         {
-            var orderStateMachine = new ProposalStateMachine();
+            var proposalStateMachine = new ProposalStateMachine();
 
             var repository = new InMemorySagaRepository<PersistedProposal>();
 
@@ -42,7 +42,7 @@ namespace ChickenPower.StateSaga
                     e =>
                     {
                         e.UseInMemoryOutbox();
-                        e.StateMachineSaga(orderStateMachine, repository);
+                        e.StateMachineSaga(proposalStateMachine, repository);
                     });
                 cfg.UseInMemoryScheduler();
             });

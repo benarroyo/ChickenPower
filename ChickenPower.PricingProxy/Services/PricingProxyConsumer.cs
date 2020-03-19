@@ -8,9 +8,9 @@ using Serilog;
 
 namespace ChickenPower.PricingProxy.Services
 {
-    public class PricingProxyConsumer : IConsumer<IGenerateContractCommand>
+    public class PricingProxyConsumer : IConsumer<ICalculatePriceCommand>
     {
-        public async Task Consume(ConsumeContext<IGenerateContractCommand> context)
+        public async Task Consume(ConsumeContext<ICalculatePriceCommand> context)
         {
             var proposalId = context.Message.ProposalId;
 
